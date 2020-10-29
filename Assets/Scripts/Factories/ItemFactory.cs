@@ -9,7 +9,7 @@ public class ItemFactory : FallingObjectFactory
     public GameObject stopSign;
     public GameObject lightning;
 
-    public float itemRegenSpeed = 10f;
+    public float itemRegenSpeed;
 
     void Start() {
         base.SetSpawnPoints();
@@ -24,7 +24,7 @@ public class ItemFactory : FallingObjectFactory
 
     public void GenerateAtRandomPosition()
     {        
-        ItemType itemType = (ItemType)Mathf.FloorToInt(Random.Range(0f, 5f));
+        ItemType itemType = (ItemType)Mathf.FloorToInt(Random.Range(0f, 4f));
         GameObject gameObj = null;
         switch(itemType){
             case ItemType.STAR:
@@ -33,8 +33,11 @@ public class ItemFactory : FallingObjectFactory
             case ItemType.STOP_SIGN:
                 gameObj = stopSign;
                 break;
+            case ItemType.LIGHTNING:
+                gameObj = lightning;    
+                break;
             default:
-                gameObj = lightning;
+                // item generation skipped
                 break;
         }        
 

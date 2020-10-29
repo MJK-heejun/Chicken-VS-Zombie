@@ -10,7 +10,7 @@ public class SpikedBallFactory : FallingObjectFactory
     public float adjustTime = 1f;
 
     private float _defaultSpikedBallRegenSpeed;    
-    private float _spikedBallMinRegenTime = 0.05f;
+    private float _spikedBallMinRegenTime = 0.035f; // was 0.05f
     private float _spikedBallRegenSpeedReducer = 0.05f;
 
     void Start() {
@@ -53,7 +53,7 @@ public class SpikedBallFactory : FallingObjectFactory
                 spikedBallRegenSpeed = _spikedBallMinRegenTime;
             }
             if (spikedBallRegenSpeed < 0.35f) {
-                _spikedBallRegenSpeedReducer = 0.01f;
+                _spikedBallRegenSpeedReducer = 0.003f; // was 0.01f
             } else {
                 _spikedBallRegenSpeedReducer = 0.05f;
             }

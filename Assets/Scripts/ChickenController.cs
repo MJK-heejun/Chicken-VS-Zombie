@@ -19,6 +19,8 @@ public class ChickenController : MonoBehaviour
 
     public Text EggCountText;
     public Text StarCountText;
+    public Text GameOverText;
+    public Button RestartButton;
 
     public bool onGround;
     public bool onZombie;
@@ -113,15 +115,11 @@ public class ChickenController : MonoBehaviour
         
         if (other.name == "ZombieBody") {
             _numStars--;
-            var zombeCont = other.transform.parent.GetComponent<ZombieController>();
-            zombeCont.KillIt();
+            var zombieCont = other.transform.parent.GetComponent<ZombieController>();
+            zombieCont.KillIt();
             soundBoxController.PlayZombieDead();
             if(_numStars < 0) {
-                _dead = true;
-                DirectionType _flyDirection = zombeCont.direction;
-                GetComponent<BoxCollider2D>().enabled = false;      
-                soundBoxController.PlayChickenDead();
-                StartCoroutine("DestorySoon");
+                ChickenDies(zombieCont);
             }
         }
         
@@ -160,6 +158,18 @@ public class ChickenController : MonoBehaviour
         } else if (_myRigidbody.transform.position.x >= _rightBoundary){
             transform.position = new Vector2(transform.position.x - distance, transform.position.y);
         }
+    }
+
+    private void ChickenDies(ZombieController zombieCont) {
+        _dead = true;
+        DirectionType _flyDirection = zombieCont.direction;
+        GetComponent<BoxCollider2D>().enabled = false;      
+        soundBoxController.PlayChickenDead();
+        StartCoroutine("DestorySoon");
+
+        GameOverText.text = $"You collected {_numEggs} eggs";
+        GameOverText.gameObject.SetActive(true);        
+        RestartButton.gameObject.SetActive(true);
     }
 
     private bool MovingRight() => Input.GetAxisRaw("Horizontal") > 0f;
