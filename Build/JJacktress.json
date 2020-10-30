@@ -1,7 +1,7 @@
 {
 "companyName": "Private",
 "productName": "Chicken Vs Zombie",
-"productVersion": "1.0",
+"productVersion": "1.01",
 "dataUrl": "JJacktress.data.unityweb",
 "wasmCodeUrl": "JJacktress.wasm.code.unityweb",
 "wasmFrameworkUrl": "JJacktress.wasm.framework.unityweb",

@@ -41,8 +41,10 @@ public class ItemFactory : FallingObjectFactory
                 break;
         }        
 
-        float spawnXPos = Random.Range(_spawnXPosMin, _spawnXPosMax);
-        Instantiate(gameObj, new Vector2(spawnXPos, _spawnYPos), Quaternion.identity);
+        if(gameObj != null){
+            float spawnXPos = Random.Range(_spawnXPosMin, _spawnXPosMax);
+            Instantiate(gameObj, new Vector2(spawnXPos, _spawnYPos), Quaternion.identity);
+        }
     }
 
     IEnumerator SpawnItem()
